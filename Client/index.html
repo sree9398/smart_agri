@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Agriculture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes bounceButton {
+            0%, 100% {
+                transform: translateY(-5%);
+            }
+            50% {
+                transform: translateY(0);
+            }
+        }
+        .animated-bounce {
+            animation: bounceButton 1s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-green-400 to-blue-500 h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md p-4 flex justify-between items-center rounded-full mx-4 mt-4">
+        <div class="text-xl font-bold text-green-600 mx-6"><a href="index.html">Smart Agriculture</a></div>
+        <ul class="flex space-x-4">
+            <li><a href="index.html" class="text-gray-700 font-bold hover:text-green-600 px-3 py-2 rounded-md hover:bg-gray-100">Home</a></li>
+            <li><a href="about.html" class="text-gray-700 font-bold hover:text-green-600 px-3 py-2 rounded-md hover:bg-gray-100">About</a></li>
+            <li><a href="contact.html" class="text-gray-700 font-bold hover:text-green-600 px-3 py-2 rounded-md hover:bg-gray-100">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex-grow flex flex-col items-center justify-center">
+        <h1 class="text-4xl font-bold text-grey mb-10">Smart Agriculture: Crop Recommendation and Yield Prediction</h1>
+        <p class="text-lg text-grey text-center max-w-2xl mb-10">"Empowering farmers with data-driven insights for better crop selection and yield optimization. Harvest smarter, not harder."</p>
+        <div class="flex space-x-8">
+            <!-- Button 1 -->
+            <a href="crop_recommendation.html" 
+               class="animated-bounce bg-white text-green-600 px-6 py-3 rounded-lg shadow-lg text-xl font-semibold hover:bg-green-600 hover:text-white transform transition duration-300 hover:scale-105">
+                Crop Recommendation
+            </a>
+            <!-- Button 2 -->
+            <a href="crop_yield.html" 
+               class="animated-bounce bg-white text-blue-600 px-6 py-3 rounded-lg shadow-lg text-xl font-semibold hover:bg-blue-600 hover:text-white transform transition duration-300 hover:scale-105">
+                Crop Yield Prediction
+            </a>
+        </div>
+    </div>
+</body>
+</html>

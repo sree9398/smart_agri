@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+h1 {
+    text-align: center;
+}
+form {
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+label, input, button {
+    margin-bottom: 10px;
+}
+#results {
+    margin-top: 20px;
+    text-align: center;
+}

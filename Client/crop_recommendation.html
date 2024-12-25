@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Agriculture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes bounceButton {
+            0%, 100% {
+                transform: translateY(-5%);
+            }
+            50% {
+                transform: translateY(0);
+            }
+        }
+        .animated-fade {
+            animation: fadeIn 1s ease-in-out;
+        }
+        .animated-bounce {
+            animation: bounceButton 1s infinite;
+        }
+    </style>
+    <script>
+        async function predictCrop(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Gather input values
+            const inputData = {
+                N: parseFloat(document.getElementById('nitrogen').value),
+                P: parseFloat(document.getElementById('phosphorus').value),
+                K: parseFloat(document.getElementById('potassium').value),
+                temperature: parseFloat(document.getElementById('temperature').value),
+                humidity: parseFloat(document.getElementById('humidity').value),
+                ph: parseFloat(document.getElementById('ph').value),
+                rainfall: parseFloat(document.getElementById('rainfall').value),
+            };
+
+            // Call the backend API
+            try {
+                const response = await fetch('http://127.0.0.1:5000/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(inputData),
+                });
+
+                const result = await response.json();
+
+                // Handle response
+                if (response.ok) {
+                    document.getElementById('label').value = result.recommended_crop;
+                } else {
+                    document.getElementById('label').value = `Error: ${result.error}`;
+                }
+            } catch (error) {
+                document.getElementById('label').value = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-r from-green-400 to-blue-500 h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md p-4 flex justify-between items-center rounded-full mx-4 mt-4">
+        <div class="text-xl font-bold text-green-600 mx-6"><a href="index.html">Smart Agriculture</a></div>
+        <ul class="flex space-x-4">
+            <li><a href="index.html" class="text-gray-700 font-bold hover:text-green-600 px-3 py-2 rounded-md hover:bg-gray-100">Home</a></li>
+            <li><a href="about.html" class="text-gray-700 font-bold hover:text-green-600 px-3 py-2 rounded-md hover:bg-gray-100">About</a></li>
+            <li><a href="contact.html" class="text-gray-700 font-bold hover:text-green-600 px-3 py-2 rounded-md hover:bg-gray-100">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="text-center mb-8 mt-10">
+        <h1 class="text-4xl font-bold text-white animated-fade">Crop Recommendation System</h1>
+        <p class="text-lg text-gray-100 mt-2 animated-fade">"Provide inputs to predict the best crop to cultivate."</p>
+    </header>
+
+    <!-- Form Section -->
+    <div class="flex-grow flex justify-center items-center">
+        <div class="bg-white mb-8 shadow-lg rounded-xl p-8 w-11/12 md:w-3/4 lg:w-1/2 animated-fade">
+            <form onsubmit="predictCrop(event)" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="nitrogen" class="block text-gray-700 font-medium">Nitrogen (N)</label>
+                        <input type="number" id="nitrogen" name="nitrogen" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500">
+                    </div>
+                    <div>
+                        <label for="phosphorus" class="block text-gray-700 font-medium">Phosphorus (P)</label>
+                        <input type="number" id="phosphorus" name="phosphorus" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500">
+                    </div>
+                    <div>
+                        <label for="potassium" class="block text-gray-700 font-medium">Potassium (K)</label>
+                        <input type="number" id="potassium" name="potassium" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500">
+                    </div>
+                    <div>
+                        <label for="temperature" class="block text-gray-700 font-medium">Temperature (&deg;C)</label>
+                        <input type="number" id="temperature" name="temperature" step="0.1" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500">
+                    </div>
+                    <div>
+                        <label for="humidity" class="block text-gray-700 font-medium">Humidity (%)</label>
+                        <input type="number" id="humidity" name="humidity" step="0.1" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500">
+                    </div>
+                    <div>
+                        <label for="ph" class="block text-gray-700 font-medium">pH</label>
+                        <input type="number" id="ph" name="ph" step="0.1" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500">
+                    </div>
+                    <div>
+                        <label for="rainfall" class="block text-gray-700 font-medium">Rainfall (mm)</label>
+                        <input type="number" id="rainfall" name="rainfall" step="0.1" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="label" class="block text-gray-700 font-medium">Predicted Crop</label>
+                    <input type="text" id="label" name="label" readonly placeholder="Prediction will appear here" class="w-full px-4 py-2 border rounded-lg bg-gray-100 focus:outline-none">
+                </div>
+
+                <div class="flex justify-center">
+                    <button type="submit" class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-green-700 transform transition duration-300 hover:scale-105">Predict Crop</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

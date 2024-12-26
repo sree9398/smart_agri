@@ -40,7 +40,7 @@
     <!-- Contact Form Section -->
     <div class="flex-grow flex justify-center items-center px-4">
         <div class="bg-white shadow-lg mb-8 rounded-xl p-8 w-full md:w-3/4 lg:w-1/2 animated-fade">
-            <form action="/submit" method="POST" class="space-y-6">
+            <form id="contactForm" class="space-y-6">
                 <div>
                     <label for="name" class="block text-gray-700 font-medium">Your Name</label>
                     <input type="text" id="name" name="name" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500">
@@ -65,8 +65,24 @@
                     <button type="submit" class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-green-700 transform transition duration-300 hover:scale-105">Send Message</button>
                 </div>
             </form>
+            <!-- Success Message -->
+            <div id="successMessage" class="hidden mt-4 text-center text-green-600 font-semibold text-lg">
+                Form submitted successfully! Thank you for reaching out.
+            </div>
         </div>
     </div>
+
+    <!-- JavaScript -->
+    <script>
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+            successMessage.classList.remove('hidden'); // Show success message
+            contactForm.reset(); // Reset the form fields
+        });
+    </script>
 
 </body>
 </html>

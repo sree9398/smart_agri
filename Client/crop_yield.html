@@ -46,7 +46,7 @@
 
                 // Display the result
                 if (response.ok) {
-                    document.getElementById('label').value = `${result.predicted_yield} tons/hectare`;
+                    document.getElementById('label').value = `${result.predicted_yield} tons`;
                 } else {
                     document.getElementById('label').value = `Error: ${result.error}`;
                 }
@@ -80,11 +80,76 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label for="crop" class="block text-gray-700 font-medium">Crop</label>
-                        <input type="text" id="crop" name="crop" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500">
+                        <select id="crop" name="crop" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500">
+                            <option value="" disabled selected>Select a crop</option>
+                            <option value="Arecanut">Arecanut</option>
+                            <option value="Arhar/Tur">Arhar/Tur</option>
+                            <option value="Castor seed">Castor seed</option>
+                            <option value="Coconut">Coconut</option>
+                            <option value="Cotton(lint)">Cotton(lint)</option>
+                            <option value="Dry chillies">Dry chillies</option>
+                            <option value="Gram">Gram</option>
+                            <option value="Jute">Jute</option>
+                            <option value="Linseed">Linseed</option>
+                            <option value="Maize">Maize</option>
+                            <option value="Mesta">Mesta</option>
+                            <option value="Niger seed">Niger seed</option>
+                            <option value="Onion">Onion</option>
+                            <option value="Other Rabi pulses">Other Rabi pulses</option>
+                            <option value="Potato">Potato</option>
+                            <option value="Rapeseed &Mustard">Rapeseed &Mustard</option>
+                            <option value="Rice">Rice</option>
+                            <option value="Sesamum">Sesamum</option>
+                            <option value="Small millets">Small millets</option>
+                            <option value="Sugarcane">Sugarcane</option>
+                            <option value="Sweet potato">Sweet potato</option>
+                            <option value="Tapioca">Tapioca</option>
+                            <option value="Tobacco">Tobacco</option>
+                            <option value="Turmeric">Turmeric</option>
+                            <option value="Wheat">Wheat</option>
+                            <option value="Bajra">Bajra</option>
+                            <option value="Black pepper">Black pepper</option>
+                            <option value="Cardamom">Cardamom</option>
+                            <option value="Coriander">Coriander</option>
+                            <option value="Garlic">Garlic</option>
+                            <option value="Ginger">Ginger</option>
+                            <option value="Groundnut">Groundnut</option>
+                            <option value="Horse-gram">Horse-gram</option>
+                            <option value="Jowar">Jowar</option>
+                            <option value="Ragi">Ragi</option>
+                            <option value="Cashewnut">Cashewnut</option>
+                            <option value="Banana">Banana</option>
+                            <option value="Soyabean">Soyabean</option>
+                            <option value="Barley">Barley</option>
+                            <option value="Khesari">Khesari</option>
+                            <option value="Masoor">Masoor</option>
+                            <option value="Moong(Green Gram)">Moong(Green Gram)</option>
+                            <option value="Other Kharif pulses">Other Kharif pulses</option>
+                            <option value="Safflower">Safflower</option>
+                            <option value="Sannhamp">Sannhamp</option>
+                            <option value="Sunflower">Sunflower</option>
+                            <option value="Urad">Urad</option>
+                            <option value="Peas & beans (Pulses)">Peas & beans (Pulses)</option>
+                            <option value="Other oilseeds">Other oilseeds</option>
+                            <option value="Other Cereals">Other Cereals</option>
+                            <option value="Cowpea(Lobia)">Cowpea(Lobia)</option>
+                            <option value="Oilseeds total">Oilseeds total</option>
+                            <option value="Guar seed">Guar seed</option>
+                            <option value="Other Summer Pulses">Other Summer Pulses</option>
+                            <option value="Moth">Moth</option>
+                        </select>
                     </div>
                     <div>
                         <label for="season" class="block text-gray-700 font-medium">Season</label>
-                        <input type="text" id="season" name="season" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500">
+                        <select name="season" id="season" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500">
+                            <option value="" disabled selected>Select a Season</option>
+                            <option value="Whole Year">Whole Year</option>
+                            <option value="Kharif">Kharif</option>
+                            <option value="Rabi">Rabi</option>
+                            <option value="Autumn">Autumn</option>
+                            <option value="Summer">Summer</option>
+                            <option value="Winter">Winter</option>
+                        </select>
                     </div>
                     <div>
                         <label for="area" class="block text-gray-700 font-medium">Area (hectares)</label>
